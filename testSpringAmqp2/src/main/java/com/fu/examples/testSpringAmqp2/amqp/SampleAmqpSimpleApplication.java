@@ -77,15 +77,10 @@ public class SampleAmqpSimpleApplication {
 		return new Sender("simple.queue");
 	}
 	
-//	@Bean
-//	Sender mySender3() {
-//		return new Sender("itcast.object");
-//	}
-	
-//    @Bean
-//    MessageConverter messageConverter() {
-//		return new Jackson2JsonMessageConverter();
-//	}
+	@Bean
+	CreateSender objectQueue() {
+		return new CreateSender("object.queue");
+	}
 	
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(SampleAmqpSimpleApplication.class, args);

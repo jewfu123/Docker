@@ -68,14 +68,14 @@ public class SampleAmqpSimpleTests {
 		}
 	}
 	
-//	@Test
-//	public void send2Object() throws InterruptedException {
-//		Map<String, Object> msg = new HashMap<>();
-//		msg.put("name",  "大姐");
-//		msg.put("age", "23");
-//		String queueName = "itcast.object";
-//		for (int i=0;i<100;i++) {
-//			rabbitTemplate.convertAndSend(queueName, "", msg);
-//		}
-//	}
+	@Test
+	public void send2Object() throws InterruptedException {
+		Map<String, Object> msg = new HashMap<>();
+		msg.put("name",  "大姐");
+		msg.put("age", "23");
+		String queueName = "object.queue";
+		for (int i=0;i<10;i++) {
+			rabbitTemplate.convertAndSend(queueName, msg);
+		}
+	}
 }
