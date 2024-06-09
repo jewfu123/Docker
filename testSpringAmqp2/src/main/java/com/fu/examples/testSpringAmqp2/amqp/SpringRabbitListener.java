@@ -11,13 +11,13 @@ public class SpringRabbitListener {
 //	}
 	
 	
-	@RabbitListener(queues="foo4")
+	@RabbitListener(queues="foo")
 	public void listenWorkQueue1(String msg) throws InterruptedException {
 		System.out.println("spring 消费者1接收到的消息：[[ " + msg + " ]]");
 		Thread.sleep(20);
 	}
 	
-	@RabbitListener(queues="foo4")
+	@RabbitListener(queues="foo")
 	public void listenWorkQueue2(String msg) throws InterruptedException {
 		System.out.println("spring 消费者2接收到的消息：[[ " + msg + " ]]");
 		Thread.sleep(200);

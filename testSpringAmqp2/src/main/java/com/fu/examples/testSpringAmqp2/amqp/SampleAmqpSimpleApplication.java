@@ -20,6 +20,8 @@ import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
+import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -40,17 +42,17 @@ public class SampleAmqpSimpleApplication {
 	private ConnectionFactory connectionFactory;
 
 	@Bean
-	public ScheduledAnnotationBeanPostProcessor scheduledAnnotationBeanPostProcessor() {
+	ScheduledAnnotationBeanPostProcessor scheduledAnnotationBeanPostProcessor() {
 		return new ScheduledAnnotationBeanPostProcessor();
 	}
 
 	@Bean
-	public Sender mySender() {
+	Sender mySender() {
 		return new Sender("foo_xfz");
 	}
 
 	@Bean
-	public SimpleMessageListenerContainer container() {
+	SimpleMessageListenerContainer container() {
 		SimpleMessageListenerContainer container = new SimpleMessageListenerContainer(
 				this.connectionFactory);
 		Object listener = new Object() {
@@ -66,15 +68,25 @@ public class SampleAmqpSimpleApplication {
 	}
 	
 	@Bean
-	public SpringRabbitListener myRabbitListener() {
+	SpringRabbitListener myRabbitListener() {
 		return new SpringRabbitListener();
 	}
 	
 	@Bean
-	public Sender mySender2() {
+	Sender mySender2() {
 		return new Sender("simple.queue");
 	}
-
+	
+//	@Bean
+//	Sender mySender3() {
+//		return new Sender("itcast.object");
+//	}
+	
+//    @Bean
+//    MessageConverter messageConverter() {
+//		return new Jackson2JsonMessageConverter();
+//	}
+	
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(SampleAmqpSimpleApplication.class, args);
 	}

@@ -1,5 +1,8 @@
 package com.fu.examples.testSpringAmqp2.amqp;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.amqp.core.AmqpAdmin;
 import org.springframework.amqp.core.Queue;
@@ -46,4 +49,33 @@ public class SampleAmqpSimpleTests {
 			rabbitTemplate.convertAndSend(exchangeName, "", message + i);
 		}
 	}
+	
+	@Test
+	public void send2Direct() throws InterruptedException {
+		String exchangeName = "itcast.direct";
+		String message = "hello direct every one!";
+		for (int i=0;i<100;i++) {
+			rabbitTemplate.convertAndSend(exchangeName, "blue", message + i);
+		}
+	}
+	
+	@Test
+	public void send2Topic() throws InterruptedException {
+		String exchangeName = "itcast.topic";
+		String message = "hello topic every one!";
+		for (int i=0;i<100;i++) {
+			rabbitTemplate.convertAndSend(exchangeName, "china.weath", message + i);
+		}
+	}
+	
+//	@Test
+//	public void send2Object() throws InterruptedException {
+//		Map<String, Object> msg = new HashMap<>();
+//		msg.put("name",  "大姐");
+//		msg.put("age", "23");
+//		String queueName = "itcast.object";
+//		for (int i=0;i<100;i++) {
+//			rabbitTemplate.convertAndSend(queueName, "", msg);
+//		}
+//	}
 }
