@@ -32,7 +32,11 @@ docker run -e RABBITMQ_DEFAULT_USER=itcast -e RABBITMQ_DEFAULT_PASS=123321 --nam
 2 -d rabbitmq:3-management
 ```
 
+#### Stop container
+docker container stop webserver
 
+#### Delete containers
+docker container rm webserver laughing_kowalevski relaxed_sammet
 
 
 
