@@ -136,6 +136,15 @@ docker with volume commands:
 >docker run --name mn -p 80:80 -v html:/usr/share/nginx/html -d nginx
 *if html is not exist then be created auto.
 
+// -------------- 2024-10-5 -------- MySql Container ----- install:
+docker run \
+  --name mysql \
+  -e MYSQL_ROOT_PASSWORD=123 \
+  -p 3306:3306
+  -v /tmp/mysql/conf/hmy.cnf:/etc/mysql/conf.d/hmy.cnf \
+  -v /tmp/mysql/data:var/lib/mysql \
+  -d \
+  mysql:5.7.25
 
 
 
